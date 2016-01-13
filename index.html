@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Javscript Bitmap to Vector Tracing">
+    <meta name="author" content="Mat Gilbert">
+
+    <title>FaceTrace</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <div class="container">
+
+      <div class="page-header">
+        <h1>FaceTrace</h1>
+        <p class="lead">Bitmap to SVG Conversion. Trace your face. Or try something else!</p>
+      </div>
+
+      <div id="uploadContainer">
+        <div class="row">
+          <div id="uploadInputContainer" class="col-md-12 text-center">
+              <h3>Upload Image to Continue</h3>
+              <input type="file" id="imgToProcess" name="imgToProcess" onchange="previewFile()" />
+          </div>
+        </div>
+        <hr/>
+      </div>
+
+      <h3>Image Operations</h3>
+      <div class="row text-center">
+        <div class="col-md-3">
+          <p>Original</p>
+          <img id="imgSubmit" class="previewImage" src="" />
+        </div>
+        <div class="col-md-3">
+          <p>Greyscale Conversion</p>
+          <canvas id="imgGreyscale" class="previewImage"></canvas>
+        </div>
+        <div class="col-md-3">
+          <p>Bitmap to Vector Path</p>
+          <div id="svgContainer" class="previewImage"></div>
+        </div>
+        <div class="col-md-3">Vector Fills to Trace</div>
+      </div>
+
+      <h3>Greyscale Image Manipulations</h3>
+      <div class="row" class="text-center">
+        <div class="col-md-3">
+          <p>Contrast</p>
+          <input type="text" id="imgContrast" value="0"/>
+        </div>
+
+        <div class="col-md-3">
+          <p>Brightness</p>
+          <input type="text" id="imgContrast" value="0"/>
+        </div>
+
+        <div class="col-md-3">
+          <p>Sharpness</p>
+          <input type="text" id="imgContrast" value="0"/>
+        </div>
+
+        <div class="col-md-3">
+          <p>Blur</p>
+          <input type="text" id="imgContrast" value="0"/>
+        </div>                  
+      </div>
+
+
+
+
+    </div> <!-- /container -->
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/caman/dist/caman.full.min.js"></script>
+
+    <script src="js/potrace.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

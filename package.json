@@ -1,0 +1,28 @@
+{
+  "name": "facetrace",
+  "version": "1.0.0",
+  "description": "Bitmap Photo to SVG Conversion",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dirtybirdnj/facetrace.git"
+  },
+  "keywords": [
+    "face",
+    "trace",
+    "svg",
+    "bitmap",
+    "convert",
+    "art",
+    "vector"
+  ],
+  "author": "Mat Gilbert <matgilbert@gmail.com> (http://www.matgilbert.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dirtybirdnj/facetrace/issues"
+  },
+  "homepage": "https://github.com/dirtybirdnj/facetrace#readme"
+}
