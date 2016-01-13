@@ -12,10 +12,12 @@ function previewFile() {
     
   	$(uploadContainer).slideUp();
     preview.src = reader.result;
-    convertGreyscale().then(function()
-    	{ displaySVG(); }, 
-    	{  }
-    );
+    convertGreyscale();
+
+    // convertGreyscale().then(function()
+    // 	{ displaySVG(); }, 
+    // 	{  }
+    // );
 
 
   }
@@ -27,13 +29,45 @@ function previewFile() {
   }
 }
 
+function processImg(){
+  
+  var preview = document.querySelector('#imgSubmit');
+  var brightness = document.querySelector('#imgBrightness');
+  var contrast = document.querySelector('#imgContrast');  
+
+  Caman('#imgGreyscale',preview.src, function(){
+
+    this.resize({width: 260});
+    
+    if(contrast.value != 0) this.contrast(contrast.value);
+    if(brightness.value != 0) this.brightness(brightness.value);
+ 
+    this.render();
+
+  });
+
+}
+
 function convertGreyscale(){
 
   var preview = document.querySelector('#imgSubmit');
   
   Caman('#imgGreyscale',preview.src, function(){
-  	this.saturation(-100).render();
+
+    this.resize({width: 260});
+    
+  //  this.contrast(50);
+  //  //this.sharpen(100);
+  //  this.brightness(5);
+  //  //this.noise(50);
+  //  //this.exposure(50);
+  //  //this.gamma(3);
+    this.greyscale();
+    this.render();
+
   });
+
+  return;
 
 }
 

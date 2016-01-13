@@ -24,7 +24,7 @@
 
       <div class="page-header">
         <h1>FaceTrace</h1>
-        <p class="lead">Bitmap to SVG Conversion. Trace your face. Or try something else!</p>
+        <p class="lead">Javascript Bitmap to SVG Conversion. Trace your face. Or try something else!</p>
       </div>
 
       <div id="uploadContainer">
@@ -44,39 +44,34 @@
           <img id="imgSubmit" class="previewImage" src="" />
         </div>
         <div class="col-md-3">
-          <p>Greyscale Conversion</p>
+          <p>Greyscale &amp; Optimized</p>
+          <input id="processImg" onclick="processImg()" type="button" class="btn" value="Process Image"/>
           <canvas id="imgGreyscale" class="previewImage"></canvas>
-          <img id="greyscaleBitmap" src=""/>
+          
         </div>
         <div class="col-md-3">
           <p>Bitmap to Vector Path</p>
-          <div id="svgContainer" class="previewImage"></div>
           <input id="convertSVG" onclick="convertSVG()" type="button" class="btn" value="Convert to SVG"/>
+          <div id="svgContainer" class="previewImage"></div>
+          
         </div>
-        <div class="col-md-3">Vector Fills to Trace</div>
+        <div class="col-md-3">Vector Paths to Trace</div>
       </div>
 
       <h3>Greyscale Image Manipulations</h3>
-      <div class="row" class="text-center">
+      <div class="row">
         <div class="col-md-3">
           <p>Contrast</p>
-          <input type="text" id="imgContrast" value="0"/>
+          <input type="text" id="imgContrast" value="0"/><br/>
+          <small>Range: -100 to 100</small>
         </div>
 
         <div class="col-md-3">
           <p>Brightness</p>
-          <input type="text" id="imgContrast" value="0"/>
+          <input type="text" id="imgBrightness" value="0"/><br/>
+          <small>Range: -100 to 100</small>
         </div>
-
-        <div class="col-md-3">
-          <p>Sharpness</p>
-          <input type="text" id="imgContrast" value="0"/>
-        </div>
-
-        <div class="col-md-3">
-          <p>Blur</p>
-          <input type="text" id="imgContrast" value="0"/>
-        </div>                  
+                 
       </div>
 
 
