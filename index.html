@@ -46,10 +46,12 @@
         <div class="col-md-3">
           <p>Greyscale Conversion</p>
           <canvas id="imgGreyscale" class="previewImage"></canvas>
+          <img id="greyscaleBitmap" src=""/>
         </div>
         <div class="col-md-3">
           <p>Bitmap to Vector Path</p>
           <div id="svgContainer" class="previewImage"></div>
+          <input id="convertSVG" onclick="convertSVG()" type="button" class="btn" value="Convert to SVG"/>
         </div>
         <div class="col-md-3">Vector Fills to Trace</div>
       </div>

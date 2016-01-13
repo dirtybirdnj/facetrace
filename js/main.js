@@ -12,8 +12,11 @@ function previewFile() {
     
   	$(uploadContainer).slideUp();
     preview.src = reader.result;
-    convertGreyscale();
-    displaySVG();
+    convertGreyscale().then(function()
+    	{ displaySVG(); }, 
+    	{  }
+    );
+
 
   }
 
@@ -29,20 +32,20 @@ function convertGreyscale(){
   var preview = document.querySelector('#imgSubmit');
   
   Caman('#imgGreyscale',preview.src, function(){
-
   	this.saturation(-100).render();
-
   });
 
 }
 
-function displaySVG(){
+function convertSVG(){
 
 	var greyscale = document.querySelector('#imgGreyscale');
 	var svgContainer = document.querySelector('#svgContainer');
 
-	//Potrace.loadImageFromUrl(greyscale.toDataURL('image/png'));
-	Potrace.loadImageFromFile(greyscale.toDataURL('image/png'));
+	console.log(greyscale.toDataURL('image/png'));
+
+	Potrace.loadImageFromUrl(greyscale.toDataURL('image/png'));
+	//Potrace.loadImageFromFile(greyscale.toDataURL('image/png'));
 	Potrace.process(function(){
 		svgContainer.innerHTML = Potrace.getSVG(1);
 	});
