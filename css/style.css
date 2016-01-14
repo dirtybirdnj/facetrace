@@ -24,6 +24,11 @@ hr {
 
 }
 
+#imageSettings {
+
+  display: none;
+}
+
 .previewImage {
   max-width: 260px;
 

@@ -13,6 +13,9 @@
     <!-- Bootstrap core CSS -->
     <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Sliders! -->
+    <link href="node_modules/bootstrap-slider/dist/css/bootstrap-slider.min.css" rel="stylesheet">
+
 
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
@@ -23,8 +26,9 @@
     <div class="container">
 
       <div class="page-header">
+        <p class="lead pull-right">Javascript Bitmap to SVG Conversion. Trace your face. Or try something else!</p>
         <h1>FaceTrace</h1>
-        <p class="lead">Javascript Bitmap to SVG Conversion. Trace your face. Or try something else!</p>
+
       </div>
 
       <div id="uploadContainer">
@@ -37,6 +41,36 @@
         <hr/>
       </div>
 
+      <div id="imageSettings">
+        <h3>Image Manipulations</h3>
+        <div class="row">
+          <div class="col-md-3">
+            <p>Brightness</p>
+            <input id="imgBrightnessValue" class="imageSettingSlider" data-slider-id='imgBrightness' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+            <br/><small>Range: -100 to 100</small>
+          </div>
+
+          <div class="col-md-3">
+            <p>Contrast</p>
+            <input id="imgContrastValue" class="imageSettingSlider" data-slider-id='imgContrast' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+            <br/><small>Range: -100 to 100</small>
+          </div>
+
+          <div class="col-md-3">
+            <p>Exposure</p>
+            <input id="imgExposure" class="imageSettingSlider" data-slider-id='imgExposure' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+            <br/><small>Range: -100 to 100</small>
+          </div>
+
+          <div class="col-md-3">
+            <p>Clip</p>
+            <input id="imgClip" class="imageSettingSlider" data-slider-id='imgClip' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+            <br/><small>Range: 0 to 100</small>
+          </div>                    
+                   
+        </div>
+      </div>      
+
       <h3>Image Operations</h3>
       <div class="row text-center">
         <div class="col-md-3">
@@ -44,35 +78,22 @@
           <img id="imgSubmit" class="previewImage" src="" />
         </div>
         <div class="col-md-3">
-          <p>Greyscale &amp; Optimized</p>
-          <input id="processImg" onclick="processImg()" type="button" class="btn" value="Process Image"/>
+          <p>Greyscale &amp; Processed</p>
+          <!--<input id="processImg" onclick="processImg()" type="button" class="btn" value="Process Image"/>-->
           <canvas id="imgGreyscale" class="previewImage"></canvas>
           
         </div>
         <div class="col-md-3">
           <p>Bitmap to Vector Path</p>
-          <input id="convertSVG" onclick="convertSVG()" type="button" class="btn" value="Convert to SVG"/>
+          <!--<input id="convertSVG" onclick="convertSVG()" type="button" class="btn" value="Convert to SVG"/>-->
           <div id="svgContainer" class="previewImage"></div>
           
         </div>
         <div class="col-md-3">Vector Paths to Trace</div>
+        <div id="traceContainer" class="previewImage"></div>
       </div>
 
-      <h3>Greyscale Image Manipulations</h3>
-      <div class="row">
-        <div class="col-md-3">
-          <p>Contrast</p>
-          <input type="text" id="imgContrast" value="0"/><br/>
-          <small>Range: -100 to 100</small>
-        </div>
 
-        <div class="col-md-3">
-          <p>Brightness</p>
-          <input type="text" id="imgBrightness" value="0"/><br/>
-          <small>Range: -100 to 100</small>
-        </div>
-                 
-      </div>
 
 
 
@@ -81,6 +102,7 @@
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="node_modules/bootstrap-slider/dist/bootstrap-slider.min.js"></script>
     <script src="bower_components/caman/dist/caman.full.min.js"></script>
 
     <script src="js/potrace.js"></script>
