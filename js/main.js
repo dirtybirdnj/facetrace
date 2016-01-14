@@ -20,8 +20,7 @@ $(function() {
   });
 
   $('#imageSettings').on('change','.imageSettingSlider',function(){
-
-      console.log('YEAH!');
+      
       processImg();
 
   });  
@@ -71,7 +70,6 @@ function processImg(){
 
   Caman('#imgGreyscale',preview.src, function(){
 
-    this.render();
 
     this.resize({width: 260});
     
@@ -115,10 +113,6 @@ function svgShapeToTrace(){
 
   var svgContainer = $('#svgContainer').children();
   var traceContainer = document.querySelector('#traceContainer');
-  
-  //console.log(svgContainer[0]);
-  //svgContainer[0];
-
   traceContainer.innerHTML = svgContainer[0];
 
   var traceSVG = $('#traceContainer').children();
@@ -135,10 +129,7 @@ function convertSVG(){
 
   svgContainer.innerHTML = '';
 
-	console.log(greyscale.toDataURL('image/png'));
-
 	Potrace.loadImageFromUrl(greyscale.toDataURL('image/png'));
-	//Potrace.loadImageFromFile(greyscale.toDataURL('image/png'));
 	Potrace.process(function(){
 		svgContainer.innerHTML = Potrace.getSVG(1);
     //svgShapeToTrace();
