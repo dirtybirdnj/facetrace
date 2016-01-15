@@ -1,61 +1,61 @@
 'use strict';
 
 
-$(function() { 
+// $(function() { 
 
-  $("#imgBrightnessValue").slider({
-    tooltip: 'always'
-  });
+//   $("#imgBrightnessValue").slider({
+//     tooltip: 'always'
+//   });
 
-  $("#imgContrastValue").slider({
-    tooltip: 'always'
-  });  
+//   $("#imgContrastValue").slider({
+//     tooltip: 'always'
+//   });  
 
-  $("#imgExposure").slider({
-    tooltip: 'always'
-  });  
+//   $("#imgExposure").slider({
+//     tooltip: 'always'
+//   });  
 
-  $("#imgClip").slider({
-    tooltip: 'always'
-  });
+//   $("#imgClip").slider({
+//     tooltip: 'always'
+//   });
 
-  $('#imageSettings').on('change','.imageSettingSlider',function(){
+//   $('#imageSettings').on('change','.imageSettingSlider',function(){
       
-      processImg();
+//       processImg();
 
-  });  
+//   });  
 
-});
+// });
 
-function previewFile() {
-  var uploadContainer = document.querySelector('#uploadContainer');
-  var imageSettings = document.querySelector('#imageSettings');
-  var greyscale = document.querySelector('#imgGreyscale');
-  var preview = document.querySelector('#imgSubmit');
-  var file    = document.querySelector('#imgToProcess').files[0];
-  var reader  = new FileReader();
+// function previewFile() {
+//   var uploadContainer = document.querySelector('#uploadContainer');
+//   var imageSettings = document.querySelector('#imageSettings');
+//   var greyscale = document.querySelector('#imgGreyscale');
+//   var preview = document.querySelector('#imgSubmit');
+//   var file    = document.querySelector('#imgToProcess').files[0];
+//   var reader  = new FileReader();
 
-  reader.onloadend = function () {
+//   reader.onloadend = function () {
     
-  	$(uploadContainer).slideUp();
-    $(imageSettings).slideDown();
-    preview.src = reader.result;
-    convertGreyscale();
+//   	$(uploadContainer).slideUp();
+//     $(imageSettings).slideDown();
+//     preview.src = reader.result;
+//     convertGreyscale();
 
-    // convertGreyscale().then(function()
-    // 	{ displaySVG(); }, 
-    // 	{  }
-    // );
+//     // convertGreyscale().then(function()
+//     // 	{ displaySVG(); }, 
+//     // 	{  }
+//     // );
 
 
-  }
+//   }
 
-  if (file) {
-    reader.readAsDataURL(file);
-  } else {
-    preview.src = "";
-  }
-}
+//   if (file) {
+//     reader.readAsDataURL(file);
+//   } else {
+//     preview.src = "";
+//   }
+// }
 
 function processImg(){
   
@@ -86,55 +86,55 @@ function processImg(){
 
 }
 
-function convertGreyscale(){
+// function convertGreyscale(){
 
-  var preview = document.querySelector('#imgSubmit');
+//   var preview = document.querySelector('#imgSubmit');
   
-  Caman('#imgGreyscale',preview.src, function(){
+//   Caman('#imgGreyscale',preview.src, function(){
 
-    this.resize({width: 260});
+//     this.resize({width: 260});
     
-  //  this.contrast(50);
-  //  //this.sharpen(100);
-  //  this.brightness(5);
-  //  //this.noise(50);
-  //  //this.exposure(50);
-  //  //this.gamma(3);
-    this.greyscale();
-    this.render();
+//   //  this.contrast(50);
+//   //  //this.sharpen(100);
+//   //  this.brightness(5);
+//   //  //this.noise(50);
+//   //  //this.exposure(50);
+//   //  //this.gamma(3);
+//     this.greyscale();
+//     this.render();
 
-  });
+//   });
 
-  return;
+//   return;
 
-}
+// }
 
-function svgShapeToTrace(){
+// function svgShapeToTrace(){
 
-  var svgContainer = $('#svgContainer').children();
-  var traceContainer = document.querySelector('#traceContainer');
-  traceContainer.innerHTML = svgContainer[0];
+//   var svgContainer = $('#svgContainer').children();
+//   var traceContainer = document.querySelector('#traceContainer');
+//   traceContainer.innerHTML = svgContainer[0];
 
-  var traceSVG = $('#traceContainer').children();
+//   var traceSVG = $('#traceContainer').children();
 
-  $(traceSVG[0]).prop('fill','none');
-  $(traceSVG[0]).prop('stroke','#000000');
+//   $(traceSVG[0]).prop('fill','none');
+//   $(traceSVG[0]).prop('stroke','#000000');
 
-}
+// }
 
-function convertSVG(){
+// function convertSVG(){
 
-	var greyscale = document.querySelector('#imgGreyscale');
-	var svgContainer = document.querySelector('#svgContainer');
+// 	var greyscale = document.querySelector('#imgGreyscale');
+// 	var svgContainer = document.querySelector('#svgContainer');
 
-  svgContainer.innerHTML = '';
+//   svgContainer.innerHTML = '';
 
-	Potrace.loadImageFromUrl(greyscale.toDataURL('image/png'));
-	Potrace.process(function(){
-		svgContainer.innerHTML = Potrace.getSVG(1);
-    //svgShapeToTrace();
-	});
+// 	Potrace.loadImageFromUrl(greyscale.toDataURL('image/png'));
+// 	Potrace.process(function(){
+// 		svgContainer.innerHTML = Potrace.getSVG(1);
+//     //svgShapeToTrace();
+// 	});
 
-}
+// }
 
 

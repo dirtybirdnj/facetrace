@@ -35,7 +35,7 @@
         <div class="row">
           <div id="uploadInputContainer" class="col-md-12 text-center">
               <h3>Upload Image to Continue</h3>
-              <input type="file" id="imgToProcess" name="imgToProcess" onchange="previewFile()" />
+              <input type="file" id="imgToProcess" name="imgToProcess" />
           </div>
         </div>
         <hr/>
@@ -73,24 +73,22 @@
 
       <h3>Image Operations</h3>
       <div class="row text-center">
-        <div class="col-md-3">
+        <div class="col-md-4">
           <p>Original</p>
           <img id="imgSubmit" class="previewImage" src="" />
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <p>Greyscale &amp; Processed</p>
           <!--<input id="processImg" onclick="processImg()" type="button" class="btn" value="Process Image"/>-->
-          <canvas id="imgGreyscale" class="previewImage"></canvas>
+          <canvas id="imgProcessed" class="previewImage"></canvas>
           
         </div>
-        <div class="col-md-3">
-          <p>Bitmap to Vector Path</p>
+        <div class="col-md-4">
+          <p>Path Trace</p>
           <!--<input id="convertSVG" onclick="convertSVG()" type="button" class="btn" value="Convert to SVG"/>-->
           <div id="svgContainer" class="previewImage"></div>
           
         </div>
-        <div class="col-md-3">Vector Paths to Trace</div>
-        <div id="traceContainer" class="previewImage"></div>
       </div>
 
 
@@ -106,6 +104,7 @@
     <script src="bower_components/caman/dist/caman.full.min.js"></script>
 
     <script src="js/potrace.js"></script>
-    <script src="js/main.js"></script>
+    <!--<script src="js/main.js"></script> -->
+    <script src="js/refactor.js"></script>
   </body>
 </html>
