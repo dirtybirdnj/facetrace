@@ -16,6 +16,8 @@ var FaceTrace = {
 		this.preview = document.querySelector('#imgSubmit');
 		this.brightness = document.querySelector('#imgBrightnessValue');
 		this.contrast = document.querySelector('#imgContrastValue');
+		this.exposure = document.querySelector('#imgExposureValue');
+		this.clip = document.querySelector('#imgClipValue');		
 		this.targetCanvas = document.querySelector('#imgGreyscale');
 
 		//Original 
@@ -88,8 +90,9 @@ var FaceTrace = {
 
 			this.resize({width: 500});
 			this.greyscale();
-			if(FaceTrace.brightness.value != 0) this.brightness(FaceTrace.brightness.value);
-			if(FaceTrace.contrast.value != 0) this.brightness(FaceTrace.contrast.value);			
+			this.brightness(FaceTrace.brightness.value);
+			this.exposure(FaceTrace.exposure.value);
+			this.clip(FaceTrace.clip.value);
 
 			this.render(function(){
 
@@ -142,21 +145,13 @@ var FaceTrace = {
 
 		$("#imgBrightnessValue").slider({});
 		$("#imgContrastValue").slider({});  
-		$("#imgExposure").slider({});  
-		$("#imgClip").slider({});
+		$("#imgExposureValue").slider({});  
+		$("#imgClipValue").slider({});
 
 		$('#imageSettings').on('change','.imageSettingSlider',function(event){
 		  
-		  var targetInput = $(event.target).parent().parent().find('.displaySetting');
-		  var displayInput = $(event.target).parent().parent().find('.displaySetting');
-
-
-		  targetInput.prop('value',event.target.value);
-
-		  displayInput.val(event.target.value);
-
-		  console.log(event.target.value);
-
+		  //Update the UI
+		  $(event.target).parent().find('.displaySetting').prop('value',event.target.value);
 		  FaceTrace.processImage();
 
 		});

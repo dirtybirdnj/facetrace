@@ -45,42 +45,72 @@
       <div id="imageSettings">
         <h3>Image Manipulations</h3>
         <div class="row">
+          
           <div class="col-md-3">
-            
-            <br/><small>Range: -100 to 100</small>
+            <small>Range: -100 to 100</small>
             <form class="form-inline settingSliderForm">
               <div class="form-group">
                 <label>Brightness</label>
-                <input type="text" class="form-control displaySetting" id="imgBrightnessValueDisplay" value="0" disabled>
+                <input type="text" class="form-control displaySetting" value="0" disabled>
                 <div class="btn-group settingButtons" role="group" aria-label="Modify Brightness">
                   <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
                   <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
                 </div>
               </div>
 
-            </form>
-                     
+            </form>         
             <input id="imgBrightnessValue" class="imageSettingSlider" data-slider-id='imgBrightness' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
-   
           </div>
 
           <div class="col-md-3">
-            <p>Contrast</p>
-            <input id="imgContrastValue" class="imageSettingSlider" data-slider-id='imgContrast' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
-            <br/><small>Range: -100 to 100</small>
-          </div>
+            <small>Range: -100 to 100</small>
+            <form class="form-inline settingSliderForm">
+              <div class="form-group">
+                <label>Contrast</label>
+                <input type="text" class="form-control displaySetting" value="0" disabled>
+                <div class="btn-group settingButtons" role="group" aria-label="Modify Contrast">
+                  <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
+                  <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
+                </div>
+              </div>
+
+            </form>         
+            <input id="imgContrastValue" class="imageSettingSlider" data-slider-id='imgContrast' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
+          </div>          
+
 
           <div class="col-md-3">
-            <p>Exposure</p>
-            <input id="imgExposure" class="imageSettingSlider" data-slider-id='imgExposure' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
-            <br/><small>Range: -100 to 100</small>
+            <small>Range: -100 to 100</small>
+            <form class="form-inline settingSliderForm">
+              <div class="form-group">
+                <label>Exposure</label>
+                <input type="text" class="form-control displaySetting" value="0" disabled>
+                <div class="btn-group settingButtons" role="group" aria-label="Modify Exposure">
+                  <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
+                  <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
+                </div>
+              </div>
+
+            </form>         
+            <input id="imgExposureValue" class="imageSettingSlider" data-slider-id='imgExposure' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
           </div>
 
+
           <div class="col-md-3">
-            <p>Clip</p>
-            <input id="imgClip" class="imageSettingSlider" data-slider-id='imgClip' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
-            <br/><small>Range: 0 to 100</small>
-          </div>                    
+            <small>Range: 0 to 100</small>
+            <form class="form-inline settingSliderForm">
+              <div class="form-group">
+                <label>Clip</label>
+                <input type="text" class="form-control displaySetting" value="0" disabled>
+                <div class="btn-group settingButtons" role="group" aria-label="Modify Clip">
+                  <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
+                  <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
+                </div>
+              </div>
+
+            </form>         
+            <input id="imgClipValue" class="imageSettingSlider" data-slider-id='imgClip' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
+          </div>                  
                    
         </div>
       </div>      
