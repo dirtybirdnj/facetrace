@@ -30,13 +30,18 @@ var FaceTrace = {
 		this.imageProcessedBase64 = document.querySelector('#imgProcessOutput');
 
 		//Initial Bitmap to SVG conversion
-		this.svgContainer = document.querySelector('#svgContainer');		
+		this.svgContainer = document.querySelector('#svgContainer');
+
+		//Composite SVG
+		this.compositeSVG = document.querySelector('#traceComposite');
+		this.btnCaptureTrace = document.querySelector('#captureTrace');
 
 	},
 
 	events: function () {
 		//this.$batchQaStartForm.on('submit', this.onBatchQaStartFormSubmit.bind(this));
 		$(this.imageInput).on('change',this.handleImageInput.bind(this));
+		$(this.btnCaptureTrace).on('click',this.addCompositeLayer.bind(this));
 	},
 
 	imageProcessedProto: function(){
@@ -135,6 +140,13 @@ var FaceTrace = {
 		PotraceOutput.setAttribute('fill','none');
 		PotraceOutput.setAttribute('stroke','#0000FF');
 
+	},
+
+	addCompositeLayer: function(event){
+
+		var activeTrace = this.svgContainer.children[0].children[0];
+		activeTrace.setAttribute('stroke','#000000');
+		this.compositeSVG.appendChild(activeTrace);
 	}
 
 };
