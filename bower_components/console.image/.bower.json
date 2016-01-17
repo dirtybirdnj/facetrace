@@ -1,0 +1,20 @@
+{
+  "name": "console.image",
+  "main": "console.image.js",
+  "description": "The one thing Chrome Dev Tools didn't need.",
+  "license": "WTFPL",
+  "ignore": [
+    "index.html"
+  ],
+  "homepage": "https://github.com/dunxrion/console.image",
+  "_release": "c9e6d4fd2f",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "c9e6d4fd2f059e1cecefcab457c75635a0eb731f"
+  },
+  "_source": "git://github.com/dunxrion/console.image.git",
+  "_target": "*",
+  "_originalSource": "console.image",
+  "_direct": true
+}

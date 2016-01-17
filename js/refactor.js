@@ -21,8 +21,11 @@ var FaceTrace = {
 		//Original 
 		this.preview = document.querySelector('#imgSubmit');
 		
-		//Processed Image
+		//Processed Image and Container
+		this.imageProcessedContainer = document.querySelector('#imgProcessedContainer');
 		this.imageProcessed = document.querySelector('#imgProcessed');
+
+		this.imageProcessedBase64 = document.querySelector('#imgProcessOutput');
 
 		//Initial Bitmap to SVG conversion
 		this.svgContainer = document.querySelector('#svgContainer');		
@@ -32,6 +35,23 @@ var FaceTrace = {
 	events: function () {
 		//this.$batchQaStartForm.on('submit', this.onBatchQaStartFormSubmit.bind(this));
 		$(this.imageInput).on('change',this.handleImageInput.bind(this));
+	},
+
+	imageProcessedProto: function(){
+			var div = document.createElement('canvas');
+			div.setAttribute('id','imgProcessed');
+			div.setAttribute('class','previewImage');
+			return div;
+	},
+
+	replaceCanvasDiv: function(){
+
+		var targetCanvas = document.querySelector('#imgProcessed');
+
+		this.imageProcessedContainer.removeChild(targetCanvas);
+		this.imageProcessedContainer.appendChild(this.imageProcessedProto());
+		this.imageProcessed = this.imageProcessedContainer.children[0];
+
 	},
 
 	handleImageInput: function(event){
@@ -45,7 +65,8 @@ var FaceTrace = {
 		$(FaceTrace.imageSettings).slideDown();
 		FaceTrace.preview.src = reader.result;
 		
-		FaceTrace.convertGreyscale();
+		//Initially greyscale the image, no processing yet
+		FaceTrace.processImage();
 
 	  }
 
@@ -58,31 +79,46 @@ var FaceTrace = {
 
 	},
 
-	convertGreyscale: function(event){
+	processImage: function(event){
+	
+		//Make sure we are always painting on a fresh canvas
+		this.replaceCanvasDiv();
 
 		Caman(this.imageProcessed,this.preview.src, function(){
 
 			this.resize({width: 500});
 			this.greyscale();
-			this.render();
+			if(FaceTrace.brightness.value != 0) this.brightness(FaceTrace.brightness.value);
+			if(FaceTrace.contrast.value != 0) this.brightness(FaceTrace.contrast.value);			
 
-			FaceTrace.bitmapToSVG();
+			this.render(function(){
+
+				//console.log(this.toBase64());
+				//FaceTrace.imageProcessedBase64.src = this.toBase64();
+				FaceTrace.bitmapToSVG(this.toBase64());
+
+
+			});
 
 		});
 
-		return;		
+		return;
+
 	},
 
-	processImage: function(event){
-
-		
-	},
-
-	bitmapToSVG: function(event){
+	bitmapToSVG: function(base64ImageData){
 
 		this.svgContainer.innerHTML = '';
 
-		Potrace.loadImageFromUrl(this.imageProcessed.toDataURL('image/png'));
+		Potrace.setParameter({
+			turnpolicy: "minority",
+			turdsize: 20,
+			optcurve: true,
+			opttolerance: 1
+
+		});
+		//Potrace.loadImageFromUrl(this.imageProcessed.toDataURL('image/png'));
+		Potrace.loadImageFromUrl(base64ImageData);
 		Potrace.process(function(){
 			
 			FaceTrace.svgContainer.innerHTML = Potrace.getSVG(1);
@@ -94,7 +130,7 @@ var FaceTrace = {
 
 		var PotraceOutput = this.svgContainer.children[0].children[0];
 		PotraceOutput.setAttribute('fill','none');
-		PotraceOutput.setAttribute('stroke','#000000');
+		PotraceOutput.setAttribute('stroke','#0000FF');
 
 	}
 
@@ -103,28 +139,40 @@ var FaceTrace = {
 	$(function() {
 
 		FaceTrace.init();
-		//Mousetrap.bind('enter', function() { $('#btnBatchQAStart').click(); });
 
-	  $("#imgBrightnessValue").slider({
-	    tooltip: 'always'
-	  });
+		$("#imgBrightnessValue").slider({});
+		$("#imgContrastValue").slider({});  
+		$("#imgExposure").slider({});  
+		$("#imgClip").slider({});
 
-	  $("#imgContrastValue").slider({
-	    tooltip: 'always'
-	  });  
+		$('#imageSettings').on('change','.imageSettingSlider',function(event){
+		  
+		  var targetInput = $(event.target).parent().parent().find('.displaySetting');
+		  var displayInput = $(event.target).parent().parent().find('.displaySetting');
 
-	  $("#imgExposure").slider({
-	    tooltip: 'always'
-	  });  
 
-	  $("#imgClip").slider({
-	    tooltip: 'always'
-	  });
+		  targetInput.prop('value',event.target.value);
 
-	  $('#imageSettings').on('change','.imageSettingSlider',function(){
-	      
-	      //FaceTrace.UI.processImg();
+		  displayInput.val(event.target.value);
 
-	  });  	
+		  console.log(event.target.value);
+
+		  FaceTrace.processImage();
+
+		});
+
+		$('.settingSliderForm').on('click','.btnModifySetting',function(event){
+
+
+			var targetInput = $(event.target).parent().parent().find('.displaySetting');
+			var targetSlider = $(event.target).parent().parent().parent().parent().find('.imageSettingSlider');
+			var newValue = parseInt(targetInput.val()) + parseInt($(event.target).prop('value'))
+
+			targetInput.val(newValue);
+			targetSlider.slider('setValue',newValue);
+
+			FaceTrace.processImage();
+
+		}); 	
 
 });

@@ -57,34 +57,34 @@
 //   }
 // }
 
-function processImg(){
+// function processImg(){
   
-  var preview = document.querySelector('#imgSubmit');
+//   var preview = document.querySelector('#imgSubmit');
 
-  var brightness = document.querySelector('#imgBrightnessValue');
-  var contrast = document.querySelector('#imgContrastValue');
+//   var brightness = document.querySelector('#imgBrightnessValue');
+//   var contrast = document.querySelector('#imgContrastValue');
 
-  var targetCanvas = document.querySelector('#imgGreyscale');
+//   var targetCanvas = document.querySelector('#imgGreyscale');
 
-  //targetCanvas.clearRect(0, 0, targetCanvas.width, targetCanvas.height);  
+//   //targetCanvas.clearRect(0, 0, targetCanvas.width, targetCanvas.height);  
 
-  Caman('#imgGreyscale',preview.src, function(){
+//   Caman('#imgGreyscale',preview.src, function(){
 
 
-    this.resize({width: 260});
+//     this.resize({width: 260});
     
-    if(contrast.value != 0) this.contrast(contrast.value);
-    if(brightness.value != 0) this.brightness(brightness.value);
+//     if(contrast.value != 0) this.contrast(contrast.value);
+//     if(brightness.value != 0) this.brightness(brightness.value);
  
-    console.log('contrast: ' + contrast.value, 'brightness: ' + brightness.value)
+//     console.log('contrast: ' + contrast.value, 'brightness: ' + brightness.value)
 
-    this.render();
-    convertSVG();
+//     this.render();
+//     convertSVG();
 
 
-  });
+//   });
 
-}
+// }
 
 // function convertGreyscale(){
 

@@ -26,10 +26,23 @@ hr {
 
 #imageSettings {
 
-  display: none;
+  /* display: none;*/
 }
 
 .previewImage {
   max-width: 260px;
 
+}
+
+.displaySetting {
+  width: 50px!important;
+}
+
+.settingSliderForm {
+  margin-bottom: 10px;
+}
+
+.settingSliderForm small {
+
+  margin-top: 20px;
 }
