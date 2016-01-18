@@ -52,6 +52,7 @@
         <div class="row">
           <div class="col-md-3">
             <h3>Image Manipulations</h3>
+            <small><strong>Modify the settings applied by Caman</strong></small>
           </div>
           <div class="col-md-9 text-right">
             <button id="captureTrace" type="button" class="btn btn-primary">Capture Trace</button>
@@ -59,15 +60,15 @@
         </div>
         
 
+        <!-- Caman Image Manipulation Settings-->
         <div class="row">
-          
           <div class="col-md-3">
             <small>Range: -100 to 100</small>
             <form class="form-inline settingSliderForm">
               <div class="form-group">
                 <label>Brightness</label>
                 <input type="text" class="form-control displaySetting" value="0" disabled>
-                <div class="btn-group btn-group-xs settingButtons" role="group" aria-label="Modify Brightness">
+                <div class="btn-group btn-group-xs settingButtons" role="group">
                   <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
                   <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
                   <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>
@@ -84,7 +85,7 @@
               <div class="form-group">
                 <label>Contrast</label>
                 <input type="text" class="form-control displaySetting" value="0" disabled>
-                <div class="btn-group btn-group-xs settingButtons" role="group" aria-label="Modify Contrast">
+                <div class="btn-group btn-group-xs settingButtons" role="group">
                   <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
                   <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
                   <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>                 
@@ -102,7 +103,7 @@
               <div class="form-group">
                 <label>Exposure</label>
                 <input type="text" class="form-control displaySetting" value="0" disabled>
-                <div class="btn-group btn-group-xs settingButtons" role="group" aria-label="Modify Exposure">
+                <div class="btn-group btn-group-xs settingButtons" role="group">
                   <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
                   <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
                   <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>                  
@@ -120,7 +121,7 @@
               <div class="form-group">
                 <label>Clip</label>
                 <input type="text" class="form-control displaySetting" value="0" disabled>
-                <div class="btn-group btn-group-xs settingButtons" role="group" aria-label="Modify Clip">
+                <div class="btn-group btn-group-xs settingButtons" role="group">
                   <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
                   <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
                   <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>                
@@ -132,7 +133,96 @@
           </div>                  
                    
         </div>
-      </div>      
+      </div>
+
+      <div id="potraceSettings">
+        
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Trace Settings</h3>
+            <small><strong>Modify the settings applied to Potrace</strong></small>
+          </div>
+        </div>
+        
+
+        <!-- Potrace Settings-->
+        <div class="row">
+          <div class="col-md-1">
+            <p>Turnpolicy</p>       
+               <div class="btn-group-vertical btn-group-xs" role="group">
+                <button type="button" class="btn btn-default">Black</button>
+                <button type="button" class="btn btn-default">White</button>
+                <button type="button" class="btn btn-default">Left</button>
+                <button type="button" class="btn btn-default">Right</button>
+                <button type="button" class="btn btn-primary">Minority</button>
+                <button type="button" class="btn btn-default">Majority</button>                                
+              </div>
+          </div>
+
+          <div class="col-md-3">
+            <small>Range: 1 to 100, Default: 20</small>
+            <form class="form-inline settingSliderForm">
+              <div class="form-group">
+                <label>Turdsize</label>
+                <input type="text" class="form-control displaySetting" value="0" disabled>
+                <div class="btn-group btn-group-xs settingButtons" role="group">
+                  <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
+                  <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
+                  <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>                 
+                </div>
+              </div>
+
+            </form>         
+            <input id="potraceTurdsizeValue" class="potraceSettingSlider" data-slider-id='potraceTurdsize' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
+          </div>          
+
+
+          <div class="col-md-2">
+            
+            <p>Optcurve</p>       
+              <div class="btn-group btn-group-xs" role="group">
+                <button type="button" class="btn btn-primary">True</button>
+                <button type="button" class="btn btn-default">False</button>
+              </div>
+          </div>
+
+
+          <div class="col-md-2">
+            <small>Range: 0 to 100</small>
+            <form class="form-inline settingSliderForm">
+              <div class="form-group">
+                <label>Alphamax</label>
+                <input type="text" class="form-control displaySetting" value="0" disabled>
+                <div class="btn-group btn-group-xs settingButtons" role="group">
+                  <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
+                  <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
+                  <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>                
+                </div>
+              </div>
+
+            </form>         
+            <input id="potraceAlphamaxValue" class="potraceSettingSlider" data-slider-id='potraceAlphamax' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
+          </div>
+
+          <div class="col-md-2">
+            <small>Range: 0 to 100</small>
+            <form class="form-inline settingSliderForm">
+              <div class="form-group">
+                <label>Opttolerance</label>
+                <input type="text" class="form-control displaySetting" value="0" disabled>
+                <div class="btn-group btn-group-xs settingButtons" role="group">
+                  <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
+                  <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
+                  <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>                
+                </div>
+              </div>
+
+            </form>         
+            <input id="potraceOpttoleranceValue" class="potraceSettingSlider" data-slider-id='potraceOpttolerance' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
+          </div>                            
+                   
+        </div>
+      </div>               
 
       <h3>Image Operations</h3>
       <div class="row text-center">

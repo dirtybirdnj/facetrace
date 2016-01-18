@@ -133,6 +133,7 @@ var FaceTrace = {
 			turnpolicy: "minority",
 			turdsize: 20,
 			optcurve: true,
+			alphamax: 1,
 			opttolerance: 1
 
 		});
@@ -214,6 +215,9 @@ var FaceTrace = {
 		$("#imgContrastValue").slider({});  
 		$("#imgExposureValue").slider({});  
 		$("#imgClipValue").slider({});
+		$("#potraceTurdsizeValue").slider({});
+		$("#potraceAlphamaxValue").slider({});
+		$("#potraceOpttoleranceValue").slider({});				
 
 		//When one of the sliders is clicked and dragged
 		$('#imageSettings').on('change','.imageSettingSlider',function(event){
