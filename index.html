@@ -12,12 +12,9 @@
 
     <!-- Bootstrap core CSS -->
     <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Sliders! -->
     <link href="node_modules/bootstrap-slider/dist/css/bootstrap-slider.min.css" rel="stylesheet">
-
-
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for this maxiumum style -->
     <link href="css/style.css" rel="stylesheet">
 
   </head>
@@ -31,6 +28,9 @@
           <button type="button" class="btn btn-success " data-toggle="modal" data-target="#myModal">Help!</button>
           Javascript Bitmap to SVG Conversion. Trace your face. Or try something else!</p>
         <h1>FaceTrace</h1>
+          <small><a href="https://github.com/dirtybirdnj/facetrace" target="_blank">https://github.com/dirtybirdnj/facetrace</a></small>
+
+        
 
 
 
@@ -54,7 +54,6 @@
             <h3>Image Manipulations</h3>
           </div>
           <div class="col-md-9 text-right">
-            <button id="reset" type="button" class="btn btn-danger">Reset</button>
             <button id="captureTrace" type="button" class="btn btn-primary">Capture Trace</button>
           </div>
         </div>
@@ -71,7 +70,7 @@
                 <div class="btn-group btn-group-xs settingButtons" role="group" aria-label="Modify Brightness">
                   <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
                   <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
-                  <button type="button" class="btn btn-danger btnModifySetting" value="0">Reset</button>
+                  <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>
                 </div>
               </div>
 
@@ -88,7 +87,7 @@
                 <div class="btn-group btn-group-xs settingButtons" role="group" aria-label="Modify Contrast">
                   <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
                   <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
-                  <button type="button" class="btn btn-danger btnModifySetting" value="0">Reset</button>                  
+                  <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>                 
                 </div>
               </div>
 
@@ -106,7 +105,7 @@
                 <div class="btn-group btn-group-xs settingButtons" role="group" aria-label="Modify Exposure">
                   <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
                   <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
-                  <button type="button" class="btn btn-danger btnModifySetting" value="0">Reset</button>                  
+                  <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>                  
                 </div>
               </div>
 
@@ -124,7 +123,7 @@
                 <div class="btn-group btn-group-xs settingButtons" role="group" aria-label="Modify Clip">
                   <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
                   <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
-                  <button type="button" class="btn btn-danger btnModifySetting" value="0">Reset</button>                  
+                  <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>                
                 </div>
               </div>
 
@@ -163,6 +162,10 @@
             <svg id="combinedSVGs"></svg>
           </div>
 
+          <div id="workspaceContainer">
+            <svg id="workspace"></svg>
+          </div>
+
         </div>
       </div>
 
@@ -172,15 +175,13 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">FaceTrace Help</h4>
+              <h4 class="modal-title">FaceTrace Usage Instructions</h4>
             </div>
             <div class="modal-body">
-              <p>Do you need help? Here are the instructions on how to use FaceTrace!</p>
               <ol>
-                <li>Upload an image</li>
-                <li>Modify the image settings (brightness, contrast, exposure, clip</li>
-                <li>Optionally, modify the Trace settings</li>
-                <li>Capture a trace</li>
+                <li>Upload an image from your computer</li>
+                <li>Modify the <strong>Image Manipulations</strong> settings (brightness, contrast, exposure, clip</li>
+                <li >Click the <span class="btn btn-primary btn-disabled">Capture a Trace</span> button</li>
                 <li>Modify settings and capture more traces until you are happy with your image</li>
               </ol>                                                
             </div>

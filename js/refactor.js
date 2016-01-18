@@ -38,6 +38,9 @@ var FaceTrace = {
 		this.compositeSVG = document.querySelector('#traceComposite');
 		this.btnCaptureTrace = document.querySelector('#captureTrace');
 
+		//Workspace SVG for display
+		this.workspace = document.querySelector('#workspace');
+
 	},
 
 	events: function () {
@@ -82,7 +85,7 @@ var FaceTrace = {
 	    
 		FaceTrace.preview.src = reader.result;
 		
-		//Initially greyscale the image, no processing yet
+		//Initially greyscale the image for display
 		FaceTrace.processImage();
 
 	  }
@@ -92,12 +95,6 @@ var FaceTrace = {
 	  } else {
 	    preview.src = "";
 	  }
-
-
-	},
-
-	resetAllSettings: function(event){
-
 
 
 	},
@@ -117,12 +114,9 @@ var FaceTrace = {
 			this.clip(FaceTrace.clip.value);
 
 			this.render(function(){
-
-				//console.log(this.toBase64());
-				//FaceTrace.imageProcessedBase64.src = this.toBase64();
+				
 				FaceTrace.bitmapToSVG(this.toBase64());
-
-
+			
 			});
 
 		});
@@ -142,7 +136,7 @@ var FaceTrace = {
 			opttolerance: 1
 
 		});
-		//Potrace.loadImageFromUrl(this.imageProcessed.toDataURL('image/png'));
+
 		Potrace.loadImageFromUrl(base64ImageData);
 		Potrace.process(function(){
 			
