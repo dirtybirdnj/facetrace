@@ -40,14 +40,16 @@ var FaceTrace = {
 		//Workspace
 		this.workspace = document.querySelector('#workspace');
 
-		//Trace Capture Controls
-
 		//Capture single trace button
 		this.btnCaptureTrace = document.querySelector('#captureTrace');
 
-		//Step Mode toggles
+		//Step Mode toggle buttons
 		this.$stepModeToggleBtns = $('.toggleStepMode');
 		this.stepModeSetting = document.querySelector('#stepModeValue');
+
+		//Potrace Turnpolicy
+		this.$potraceTurnpolicyBtns = $('.btnPotraceTurnpolicy');
+		this.potraceTurnpolicy = document.querySelector('#potraceTurnpolicyValue');
 
 	},
 
@@ -57,6 +59,7 @@ var FaceTrace = {
 		$(this.imageInput).on('change',this.handleImageInput.bind(this));
 		$(this.btnCaptureTrace).on('click',this.addCompositeLayer.bind(this));
 		$(this.$stepModeToggleBtns).on('click',this.toggleStepMode.bind(this));
+		$(this.$potraceTurnpolicyBtns).on('click',this.applyPotraceTurnpolicy.bind(this));
 	},
 
 	// New Canvas Prototype Element
@@ -221,6 +224,27 @@ var FaceTrace = {
 		var newStepModeSetting = $(event.target).attr('stepmode');
 		this.stepModeSetting.setAttribute('value',newStepModeSetting);		
 		$(this.$stepModeToggleBtns).toggleClass('btn-primary');
+
+	},
+
+	applyPotraceTurnpolicy: function(event){
+
+		//Remove btn-primray from all buttons
+		$.each(this.$potraceTurnpolicyBtns,function(index, button){
+			if($(button).hasClass('btn-primary')){
+				$(button).removeClass('btn-primary');
+				$(button).addClass('btn-default');
+			}
+		});
+
+		//Add Primary to the clicked button
+		$(event.target).addClass('btn-primary');
+
+		var turnpolicy = event.target.getAttribute('value');
+		this.potraceTurnpolicy.value = turnpolicy;		
+
+
+		console.log(turnpolicy);
 
 	}
 
