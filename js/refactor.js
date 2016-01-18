@@ -142,7 +142,7 @@ var FaceTrace = {
 		this.svgContainer.innerHTML = '';
 
 		Potrace.setParameter({
-			turnpolicy: "minority",
+			turnpolicy: this.potraceTurnpolicy.value,
 			turdsize: 20,
 			optcurve: true,
 			alphamax: 1,
@@ -243,8 +243,8 @@ var FaceTrace = {
 		var turnpolicy = event.target.getAttribute('value');
 		this.potraceTurnpolicy.value = turnpolicy;		
 
-
-		console.log(turnpolicy);
+		//Re-draw workspace with the new setting
+		this.processImage();
 
 	}
 
