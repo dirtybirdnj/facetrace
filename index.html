@@ -26,7 +26,10 @@
     <div class="container">
 
       <div class="page-header">
-        <p class="lead pull-right">Javascript Bitmap to SVG Conversion. Trace your face. Or try something else!</p>
+        <p class="lead pull-right">
+          <input id="btnUploadNew" class="btn btn-primary" type="button" value="Upload Image"/> 
+          <button type="button" class="btn btn-success " data-toggle="modal" data-target="#myModal">Help!</button>
+          Javascript Bitmap to SVG Conversion. Trace your face. Or try something else!</p>
         <h1>FaceTrace</h1>
 
 
@@ -51,6 +54,7 @@
             <h3>Image Manipulations</h3>
           </div>
           <div class="col-md-9 text-right">
+            <button id="reset" type="button" class="btn btn-danger">Reset</button>
             <button id="captureTrace" type="button" class="btn btn-primary">Capture Trace</button>
           </div>
         </div>
@@ -64,9 +68,10 @@
               <div class="form-group">
                 <label>Brightness</label>
                 <input type="text" class="form-control displaySetting" value="0" disabled>
-                <div class="btn-group settingButtons" role="group" aria-label="Modify Brightness">
+                <div class="btn-group btn-group-xs settingButtons" role="group" aria-label="Modify Brightness">
                   <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
                   <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
+                  <button type="button" class="btn btn-danger btnModifySetting" value="0">Reset</button>
                 </div>
               </div>
 
@@ -80,9 +85,10 @@
               <div class="form-group">
                 <label>Contrast</label>
                 <input type="text" class="form-control displaySetting" value="0" disabled>
-                <div class="btn-group settingButtons" role="group" aria-label="Modify Contrast">
+                <div class="btn-group btn-group-xs settingButtons" role="group" aria-label="Modify Contrast">
                   <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
                   <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
+                  <button type="button" class="btn btn-danger btnModifySetting" value="0">Reset</button>                  
                 </div>
               </div>
 
@@ -97,9 +103,10 @@
               <div class="form-group">
                 <label>Exposure</label>
                 <input type="text" class="form-control displaySetting" value="0" disabled>
-                <div class="btn-group settingButtons" role="group" aria-label="Modify Exposure">
+                <div class="btn-group btn-group-xs settingButtons" role="group" aria-label="Modify Exposure">
                   <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
                   <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
+                  <button type="button" class="btn btn-danger btnModifySetting" value="0">Reset</button>                  
                 </div>
               </div>
 
@@ -114,9 +121,10 @@
               <div class="form-group">
                 <label>Clip</label>
                 <input type="text" class="form-control displaySetting" value="0" disabled>
-                <div class="btn-group settingButtons" role="group" aria-label="Modify Clip">
+                <div class="btn-group btn-group-xs settingButtons" role="group" aria-label="Modify Clip">
                   <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
                   <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
+                  <button type="button" class="btn btn-danger btnModifySetting" value="0">Reset</button>                  
                 </div>
               </div>
 
@@ -158,17 +166,36 @@
         </div>
       </div>
 
-      <!--
-      <div id="compositeContainer">
-        <svg id="traceComposite"></svg>
-      </div>
-      -->
+
+      <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">FaceTrace Help</h4>
+            </div>
+            <div class="modal-body">
+              <p>Do you need help? Here are the instructions on how to use FaceTrace!</p>
+              <ol>
+                <li>Upload an image</li>
+                <li>Modify the image settings (brightness, contrast, exposure, clip</li>
+                <li>Optionally, modify the Trace settings</li>
+                <li>Capture a trace</li>
+                <li>Modify settings and capture more traces until you are happy with your image</li>
+              </ol>                                                
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
 
     </div> <!-- /container -->
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="node_modules/bootstrap-slider/dist/bootstrap-slider.min.js"></script>
+    <script src="node_modules/bootstrap-slider/dist/bootstrap-slider.min.js"></script>
     <script src="bower_components/caman/dist/caman.full.min.js"></script>
     <script src="bower_components/console.image/console.image.min.js"></script>    
 

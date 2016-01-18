@@ -8,6 +8,8 @@ var FaceTrace = {
 
 	elements: function () {
 
+
+		this.btnUploadNew = document.querySelector('#btnUploadNew');
 		this.imageInput = document.querySelector('#imgToProcess');
 		this.uploadContainer = document.querySelector('#uploadContainer');
 
@@ -39,18 +41,22 @@ var FaceTrace = {
 	},
 
 	events: function () {
-		//this.$batchQaStartForm.on('submit', this.onBatchQaStartFormSubmit.bind(this));
+
+		$(this.btnUploadNew).on('click',this.newImageInput.bind(this));
 		$(this.imageInput).on('change',this.handleImageInput.bind(this));
 		$(this.btnCaptureTrace).on('click',this.addCompositeLayer.bind(this));
 	},
 
+	// New Canvas Prototype Element
 	imageProcessedProto: function(){
+
 			var div = document.createElement('canvas');
 			div.setAttribute('id','imgProcessed');
 			div.setAttribute('class','previewImage');
 			return div;
 	},
 
+	// Replaces the canvas div before each Caman process, so the image updates properly
 	replaceCanvasDiv: function(){
 
 		var targetCanvas = document.querySelector('#imgProcessed');
@@ -61,6 +67,12 @@ var FaceTrace = {
 
 	},
 
+	newImageInput: function(event){
+
+		$(this.imageInput).trigger('click');
+
+	},
+
 	handleImageInput: function(event){
 
 	  var file    = this.imageInput.files[0];
@@ -68,8 +80,6 @@ var FaceTrace = {
 
 	  reader.onloadend = function (scope) {
 	    
-		$(FaceTrace.uploadContainer).slideUp();
-		$(FaceTrace.imageSettings).slideDown();
 		FaceTrace.preview.src = reader.result;
 		
 		//Initially greyscale the image, no processing yet
@@ -86,6 +96,12 @@ var FaceTrace = {
 
 	},
 
+	resetAllSettings: function(event){
+
+
+
+	},
+
 	processImage: function(event){
 	
 		//Make sure we are always painting on a fresh canvas
@@ -96,6 +112,7 @@ var FaceTrace = {
 			this.resize({width: 500});
 			this.greyscale();
 			this.brightness(FaceTrace.brightness.value);
+			this.contrast(FaceTrace.contrast.value);			
 			this.exposure(FaceTrace.exposure.value);
 			this.clip(FaceTrace.clip.value);
 
@@ -160,6 +177,7 @@ var FaceTrace = {
 		$("#imgExposureValue").slider({});  
 		$("#imgClipValue").slider({});
 
+		//When one of the sliders is clicked and dragged
 		$('#imageSettings').on('change','.imageSettingSlider',function(event){
 		  
 		  //Update the UI
@@ -168,12 +186,18 @@ var FaceTrace = {
 
 		});
 
+		//When one of the +, - or Reset buttons are clicked
 		$('.settingSliderForm').on('click','.btnModifySetting',function(event){
-
 
 			var targetInput = $(event.target).parent().parent().find('.displaySetting');
 			var targetSlider = $(event.target).parent().parent().parent().parent().find('.imageSettingSlider');
-			var newValue = parseInt(targetInput.val()) + parseInt($(event.target).prop('value'))
+			
+			var displayInputValue = parseInt(targetInput.val());
+			var buttonValue = parseInt($(event.target).prop('value'));
+
+			var newValue = 0;
+
+			if(buttonValue != 0){ newValue = displayInputValue + buttonValue; }
 
 			targetInput.val(newValue);
 			targetSlider.slider('setValue',newValue);

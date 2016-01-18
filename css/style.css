@@ -19,14 +19,14 @@ hr {
   margin-bottom: 40px;
 }
 
-#uploadInputContainer input {
-  display: inline;
+#uploadContainer {
+  display: none;
 
 }
 
-#imageSettings {
+#uploadInputContainer input {
+  display: inline;
 
-  /* display: none;*/
 }
 
 .previewImage {
