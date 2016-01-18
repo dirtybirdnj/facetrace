@@ -246,6 +246,6 @@ var FaceTrace = {
 
 			FaceTrace.processImage();
 
-		}); 	
+		});	
 
 });

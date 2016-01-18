@@ -25,8 +25,10 @@
       <div class="page-header">
         <p class="lead pull-right">
           <input id="btnUploadNew" class="btn btn-primary" type="button" value="Upload Image"/> 
-          <button type="button" class="btn btn-success " data-toggle="modal" data-target="#myModal">Help!</button>
-          Javascript Bitmap to SVG Conversion. Trace your face. Or try something else!</p>
+          <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">Help!</button>
+          <button id="btnReset" type="button" class="btn btn-danger" onclick="window.location = window.location">Reset</button>
+          <!--<button id="btnSave" type="button" class="btn btn-success">Save Output</button>-->
+          Javascript Bitmap to SVG Conversion.</p>
         <h1>FaceTrace</h1>
           <small><a href="https://github.com/dirtybirdnj/facetrace" target="_blank">https://github.com/dirtybirdnj/facetrace</a></small>
 
@@ -242,6 +244,7 @@
         </div>
         <div class="col-md-6">
           <p>Path Trace</p>
+          <small>To save SVG, right click and save as</small>
           <div id="svgContainer" class="previewImage"></div>
 
           <div id="compositeContainer">
@@ -265,9 +268,9 @@
             </div>
             <div class="modal-body">
               <ol>
-                <li>Upload an image from your computer</li>
+                <li>Click the <span class="btn btn-primary btn-xs">Upload Image</span> button to select an image from your computer</li>
                 <li>Modify the <strong>Image Manipulations</strong> settings (brightness, contrast, exposure, clip</li>
-                <li >Click the <span class="btn btn-primary btn-disabled">Capture a Trace</span> button</li>
+                <li >Click the <span class="btn btn-primary btn-xs">Capture a Trace</span> button</li>
                 <li>Modify settings and capture more traces until you are happy with your image</li>
               </ol>                                                
             </div>
