@@ -52,12 +52,21 @@
       <div id="imageSettings">
         
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-4">
             <h3>Image Manipulations</h3>
             <small><strong>Modify the settings applied by Caman</strong></small>
           </div>
-          <div class="col-md-9 text-right">
-            <button id="captureTrace" type="button" class="btn btn-primary">Capture Trace</button>
+          <div class="col-md-8">
+            <button id="captureTrace" type="button" class="btn btn-primary pull-right">Capture Trace</button>
+            <div id="stepModeInputContainer">
+              <p>Step Mode: </p>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default toggleStepMode" stepmode="true">On</button>
+                <button type="button" class="btn btn-primary toggleStepMode" stepmode="false">Off</button>
+                <input type="hidden" id="stepModeValue" value="false"/>
+              </div>
+            </div>
+            
           </div>
         </div>
         

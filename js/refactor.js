@@ -36,10 +36,18 @@ var FaceTrace = {
 
 		//Composite SVG
 		this.compositeSVG = document.querySelector('#traceComposite');
-		this.btnCaptureTrace = document.querySelector('#captureTrace');
 
 		//Workspace
 		this.workspace = document.querySelector('#workspace');
+
+		//Trace Capture Controls
+
+		//Capture single trace button
+		this.btnCaptureTrace = document.querySelector('#captureTrace');
+
+		//Step Mode toggles
+		this.$stepModeToggleBtns = $('.toggleStepMode');
+		this.stepModeSetting = document.querySelector('#stepModeValue');
 
 	},
 
@@ -48,6 +56,7 @@ var FaceTrace = {
 		$(this.btnUploadNew).on('click',this.newImageInput.bind(this));
 		$(this.imageInput).on('change',this.handleImageInput.bind(this));
 		$(this.btnCaptureTrace).on('click',this.addCompositeLayer.bind(this));
+		$(this.$stepModeToggleBtns).on('click',this.toggleStepMode.bind(this));
 	},
 
 	// New Canvas Prototype Element
@@ -200,8 +209,18 @@ var FaceTrace = {
 
 		});
 
+		if(this.stepModeSetting.value == 'true'){
 
+			this.addCompositeLayer();
+		}
 
+	},
+
+	toggleStepMode: function(event){
+
+		var newStepModeSetting = $(event.target).attr('stepmode');
+		this.stepModeSetting.setAttribute('value',newStepModeSetting);		
+		$(this.$stepModeToggleBtns).toggleClass('btn-primary');
 
 	}
 

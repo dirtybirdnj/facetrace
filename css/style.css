@@ -29,6 +29,11 @@ hr {
 
 }
 
+#imageSettings h3 {
+
+  margin-top: 0px;
+}
+
 .previewImage {
   max-width: 260px;
 
@@ -62,3 +67,12 @@ hr {
 
   display: none;
 }
+
+
+#stepModeInputContainer p {
+
+display: inline;
+
+}
+
+
