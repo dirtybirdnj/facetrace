@@ -47,15 +47,8 @@ hr {
   margin-top: 20px;
 }
 
-#traceComposite {
+#traceComposite, #svgContainer {
 
-  width: 1000px;
-  height: 1000px;
-}
-
-#svgContainer, #compositeContainer {
-  display: relative !important;
-  top: 0px;
-  left: 0px;
+  display: none;
 
 }

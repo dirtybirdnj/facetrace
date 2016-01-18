@@ -38,7 +38,7 @@ var FaceTrace = {
 		this.compositeSVG = document.querySelector('#traceComposite');
 		this.btnCaptureTrace = document.querySelector('#captureTrace');
 
-		//Workspace SVG for display
+		//Workspace
 		this.workspace = document.querySelector('#workspace');
 
 	},
@@ -149,15 +149,59 @@ var FaceTrace = {
 
 		var PotraceOutput = this.svgContainer.children[0].children[0];
 		PotraceOutput.setAttribute('fill','none');
-		PotraceOutput.setAttribute('stroke','#0000FF');
+		PotraceOutput.setAttribute('stroke','#FF0000');
+
+
+		this.workspace.setAttribute('width',this.imageProcessed.width + 100);
+		this.workspace.setAttribute('height',this.imageProcessed.height + 100);					
+
+		this.drawWorkspace();
+
+		//var existingTraces = $(this.compositeSVG).children();
 
 	},
 
 	addCompositeLayer: function(event){
 
 		var activeTrace = this.svgContainer.children[0].children[0];
-		activeTrace.setAttribute('stroke','#000000');
-		this.compositeSVG.appendChild(activeTrace);
+
+		//activeTrace.setAttribute('stroke','#000000');
+
+		var firstWorkspaceTrace = this.workspace.children[0];
+		firstWorkspaceTrace.setAttribute('stroke','#000000');
+
+		var nodeCopy = activeTrace.cloneNode(true);
+		nodeCopy.setAttribute('stroke','#000000');
+		this.compositeSVG.appendChild(nodeCopy);
+
+
+
+	},
+
+	drawWorkspace: function(event){
+	
+		var activeTrace = this.svgContainer.children[0].children[0].cloneNode(true);
+		var existingTraces = $(this.compositeSVG).children();
+
+		//Clear the existing workspace
+		while(this.workspace.firstChild){
+			this.workspace.removeChild(this.workspace.firstChild);
+		}
+
+		//Add the active trace
+		this.workspace.appendChild(activeTrace);
+
+		//Add all the existing traces
+		$.each(existingTraces,function(index,trace){
+
+			var traceCopy = trace.cloneNode(true);
+			FaceTrace.workspace.appendChild(traceCopy);
+
+		});
+
+
+
+
 	}
 
 };
