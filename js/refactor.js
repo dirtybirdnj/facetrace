@@ -51,6 +51,9 @@ var FaceTrace = {
 		this.$potraceTurnpolicyBtns = $('.btnPotraceTurnpolicy');
 		this.potraceTurnpolicy = document.querySelector('#potraceTurnpolicyValue');
 
+		//Potrace Turdsize
+		this.potraceTurdsizeValue = document.querySelector
+
 	},
 
 	events: function () {
@@ -262,7 +265,7 @@ var FaceTrace = {
 		$("#potraceAlphamaxValue").slider({});
 		$("#potraceOpttoleranceValue").slider({});				
 
-		//When one of the sliders is clicked and dragged
+		//When one of the image setting sliders is clicked and dragged
 		$('#imageSettings').on('change','.imageSettingSlider',function(event){
 		  
 		  //Update the UI
@@ -270,6 +273,15 @@ var FaceTrace = {
 		  FaceTrace.processImage();
 
 		});
+
+		//When one of the potrace setting sliders is clicked and dragged
+		$('#potraceSettings').on('change','.potraceSettingSlider',function(event){
+		  
+		  //Update the UI
+		  $(event.target).parent().find('.displaySetting').prop('value',event.target.value);
+		  FaceTrace.processImage();
+
+		});		
 
 		//When one of the +, - or Reset buttons are clicked
 		$('.settingSliderForm').on('click','.btnModifySetting',function(event){

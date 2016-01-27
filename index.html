@@ -50,14 +50,16 @@
       </div>
 
       <div id="imageSettings">
-        
+      
         <div class="row">
           <div class="col-md-4">
             <h3>Image Manipulations</h3>
             <small><strong>Modify the settings applied by Caman</strong></small>
           </div>
           <div class="col-md-8">
-            <button id="captureTrace" type="button" class="btn btn-primary pull-right">Capture Trace</button>
+            
+            <button id="captureTrace" type="button" class="btn btn-default pull-right" disabled>Capture Trace</button>
+
             <div id="stepModeInputContainer">
               <p>Step Mode: </p>
               <div class="btn-group" role="group">
@@ -70,7 +72,6 @@
           </div>
         </div>
         
-
         <!-- Caman Image Manipulation Settings-->
         <div class="row">
           <div class="col-md-3">
@@ -87,25 +88,8 @@
               </div>
 
             </form>         
-            <input id="imgBrightnessValue" class="imageSettingSlider" data-slider-id='imgBrightness' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
+            <input id="imgBrightnessValue" class="imageSettingSlider" data-slider-id='imgBrightness' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
           </div>
-
-          <div class="col-md-3">
-            <small>Range: -100 to 100</small>
-            <form class="form-inline settingSliderForm">
-              <div class="form-group">
-                <label>Contrast</label>
-                <input type="text" class="form-control displaySetting" value="0" disabled>
-                <div class="btn-group btn-group-xs settingButtons" role="group">
-                  <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
-                  <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
-                  <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>                 
-                </div>
-              </div>
-
-            </form>         
-            <input id="imgContrastValue" class="imageSettingSlider" data-slider-id='imgContrast' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
-          </div>          
 
 
           <div class="col-md-3">
@@ -122,7 +106,7 @@
               </div>
 
             </form>         
-            <input id="imgExposureValue" class="imageSettingSlider" data-slider-id='imgExposure' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
+            <input id="imgExposureValue" class="imageSettingSlider" data-slider-id='imgExposure' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>       
           </div>
 
 
@@ -135,13 +119,30 @@
                 <div class="btn-group btn-group-xs settingButtons" role="group">
                   <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
                   <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
-                  <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>                
+                  <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>            
                 </div>
               </div>
 
             </form>         
             <input id="imgClipValue" class="imageSettingSlider" data-slider-id='imgClip' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
-          </div>                  
+          </div> 
+
+          <div class="col-md-3">
+            <small>Range: -100 to 100</small>
+            <form class="form-inline settingSliderForm">
+              <div class="form-group">
+                <label>Contrast</label>
+                <input type="text" class="form-control displaySetting" value="0" disabled>
+                <div class="btn-group btn-group-xs settingButtons" role="group">
+                  <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
+                  <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
+                  <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>                 
+                </div>
+              </div>
+
+            </form>         
+            <input id="imgContrastValue" class="imageSettingSlider" data-slider-id='imgContrast' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
+          </div>                             
                    
         </div>
       </div>
@@ -171,6 +172,14 @@
               <input type="hidden" id="potraceTurnpolicyValue" value="minority"/>
           </div>
 
+          <div class="col-md-2">
+            <p>Optcurve</p>       
+              <div class="btn-group-vertical btn-group-xs" role="group">
+                <button type="button" class="btn btn-primary">True</button>
+                <button type="button" class="btn btn-default">False</button>
+              </div>
+          </div>          
+
           <div class="col-md-3">
             <small>Range: 1 to 100, Default: 20</small>
             <form class="form-inline settingSliderForm">
@@ -185,21 +194,10 @@
               </div>
 
             </form>         
-            <input id="potraceTurdsizeValue" class="potraceSettingSlider" data-slider-id='potraceTurdsize' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
-          </div>          
+            <input id="potraceTurdsizeValue" class="potraceSettingSlider" data-slider-id='potraceTurdsize' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
+          </div>         
 
-
-          <div class="col-md-2">
-            
-            <p>Optcurve</p>       
-              <div class="btn-group btn-group-xs" role="group">
-                <button type="button" class="btn btn-primary">True</button>
-                <button type="button" class="btn btn-default">False</button>
-              </div>
-          </div>
-
-
-          <div class="col-md-2">
+          <div class="col-md-3">
             <small>Range: 0 to 100</small>
             <form class="form-inline settingSliderForm">
               <div class="form-group">
@@ -216,7 +214,7 @@
             <input id="potraceAlphamaxValue" class="potraceSettingSlider" data-slider-id='potraceAlphamax' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
           </div>
 
-          <div class="col-md-2">
+          <div class="col-md-3">
             <small>Range: 0 to 100</small>
             <form class="form-inline settingSliderForm">
               <div class="form-group">
