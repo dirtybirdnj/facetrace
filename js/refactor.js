@@ -51,8 +51,10 @@ var FaceTrace = {
 		this.$potraceTurnpolicyBtns = $('.btnPotraceTurnpolicy');
 		this.potraceTurnpolicy = document.querySelector('#potraceTurnpolicyValue');
 
-		//Potrace Turdsize
-		this.potraceTurdsizeValue = document.querySelector
+		//Potrace Sliders: Turdsize, Alphamax, Opttolerance
+		this.potraceTurdsize = document.querySelector('#potraceTurdsizeValue');
+		this.potraceAlphamax = document.querySelector('#potraceAlphamaxValue');
+		this.potraceOpttolerance = document.querySelector('#potraceOpttoleranceValue');				
 
 	},
 
@@ -146,10 +148,10 @@ var FaceTrace = {
 
 		Potrace.setParameter({
 			turnpolicy: this.potraceTurnpolicy.value,
-			turdsize: 20,
+			turdsize: this.potraceTurdsize.value,
 			optcurve: true,
-			alphamax: 1,
-			opttolerance: 1
+			alphamax: this.potraceAlphamax.value,
+			opttolerance: this.potraceOpttolerance.value
 
 		});
 
