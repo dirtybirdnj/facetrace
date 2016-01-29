@@ -24,7 +24,7 @@
 
       <div class="page-header">
         <p class="lead pull-right">
-          <input id="btnUploadNew" class="btn btn-primary" type="button" value="Upload Image"/> 
+          <input id="btnUploadNew" class="btn btn-lg btn-primary" type="button" value="Upload Image"/> 
           <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">Help!</button>
           <button id="btnReset" type="button" class="btn btn-danger" onclick="window.location = window.location">Reset</button>
           <!--<button id="btnSave" type="button" class="btn btn-success">Save Output</button>-->
@@ -175,8 +175,9 @@
           <div class="col-md-2">
             <p>Optcurve</p>       
               <div class="btn-group-vertical btn-group-xs" role="group">
-                <button type="button" class="btn btn-primary">True</button>
-                <button type="button" class="btn btn-default">False</button>
+                <button type="button" class="btn btn-primary potraceOptcurveSetting" value="true">True</button>
+                <button type="button" class="btn btn-default potraceOptcurveSetting" value="false">False</button>
+                <input type="hidden" id="potraceOptcurveValue" value="false"/>
               </div>
           </div>          
 
@@ -185,7 +186,7 @@
             <form class="form-inline settingSliderForm">
               <div class="form-group">
                 <label>Turdsize</label>
-                <input type="text" class="form-control displaySetting" value="0" disabled>
+                <input type="text" class="form-control displaySetting" value="20" disabled>
                 <div class="btn-group btn-group-xs settingButtons" role="group">
                   <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
                   <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
@@ -194,7 +195,7 @@
               </div>
 
             </form>         
-            <input id="potraceTurdsizeValue" class="potraceSettingSlider" data-slider-id='potraceTurdsize' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
+            <input id="potraceTurdsizeValue" class="potraceSettingSlider" data-slider-id='potraceTurdsize' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="20" data-slider-tooltip="hide"/>         
           </div>         
 
           <div class="col-md-3">
@@ -267,7 +268,8 @@
 
       <div class="row text-center">
         <div class="col-md-12">
-          <button id="downloadSVG" type="button" class="btn btn-success btn-lg">Download SVG</button>
+          <button id="btnDownloadSVG" type="button" class="btn btn-success btn-lg">Download SVG</button>
+          <a id="downloadSVGTarget" class="btn btn-success btn-lg" href="">Download SVG</a>
         </div>
       </div>
 
@@ -300,10 +302,9 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="node_modules/bootstrap-slider/dist/bootstrap-slider.min.js"></script>
     <script src="bower_components/caman/dist/caman.full.min.js"></script>
-    <script src="bower_components/console.image/console.image.min.js"></script>    
+    <script src="bower_components/console.image/console.image.min.js"></script>        
 
     <script src="js/potrace.js"></script>
-    <!--<script src="js/main.js"></script> -->
     <script src="js/refactor.js"></script>
   </body>
 </html>

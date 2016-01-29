@@ -43,6 +43,10 @@ var FaceTrace = {
 		//Capture single trace button
 		this.btnCaptureTrace = document.querySelector('#captureTrace');
 
+		//Download SVG Button
+		this.btnDownloadSVG = document.querySelector('#btnDownloadSVG');
+		this.downloadSVGTarget = document.querySelector('#downloadSVGTarget');
+
 		//Step Mode toggle buttons
 		this.$stepModeToggleBtns = $('.toggleStepMode');
 		this.stepModeSetting = document.querySelector('#stepModeValue');
@@ -50,6 +54,10 @@ var FaceTrace = {
 		//Potrace Turnpolicy
 		this.$potraceTurnpolicyBtns = $('.btnPotraceTurnpolicy');
 		this.potraceTurnpolicy = document.querySelector('#potraceTurnpolicyValue');
+
+		//Potrace OptCurve
+		this.$potraceOptcurveBtns = $('.potraceOptcurveSetting');
+		this.potraceOptcurveValue = document.querySelector('#potraceOptcurveValue');
 
 		//Potrace Sliders: Turdsize, Alphamax, Opttolerance
 		this.potraceTurdsize = document.querySelector('#potraceTurdsizeValue');
@@ -65,6 +73,8 @@ var FaceTrace = {
 		$(this.btnCaptureTrace).on('click',this.addCompositeLayer.bind(this));
 		$(this.$stepModeToggleBtns).on('click',this.toggleStepMode.bind(this));
 		$(this.$potraceTurnpolicyBtns).on('click',this.applyPotraceTurnpolicy.bind(this));
+		$(this.$potraceOptcurveBtns).on('click',this.applyPotraceOptcurve.bind(this));
+		$(this.btnDownloadSVG).on('click',this.downloadSVG.bind(this));
 	},
 
 	// New Canvas Prototype Element
@@ -100,6 +110,10 @@ var FaceTrace = {
 
 	  reader.onloadend = function (scope) {
 	    
+	    FaceTrace.btnCaptureTrace.disabled = false;
+	    $(FaceTrace.btnCaptureTrace).toggleClass('btn-default btn-success');
+	    $(FaceTrace.btnUploadNew).toggleClass('btn-primary btn-default');
+
 		FaceTrace.preview.src = reader.result;
 		
 		//Initially greyscale the image for display
@@ -146,10 +160,14 @@ var FaceTrace = {
 
 		this.svgContainer.innerHTML = '';
 
+		//var y = (x == 2 ? "yes" : "no");
+		//var optCurve = false;
+		//if(this.potraceOptcurveValue.value === 'true') optCurve = true;
+
 		Potrace.setParameter({
 			turnpolicy: this.potraceTurnpolicy.value,
 			turdsize: this.potraceTurdsize.value,
-			optcurve: true,
+			optcurve: (this.potraceOptcurveValue.value === 'true' ? true : false),
 			alphamax: this.potraceAlphamax.value,
 			opttolerance: this.potraceOpttolerance.value
 
@@ -158,7 +176,7 @@ var FaceTrace = {
 		Potrace.loadImageFromUrl(base64ImageData);
 		Potrace.process(function(){
 			
-			FaceTrace.svgContainer.innerHTML = Potrace.getSVG(1);
+			FaceTrace.svgContainer.innerHTML = Potrace.getSVG(1,"curve");
 			FaceTrace.svgShapesToTrace();
 		});
 
@@ -252,10 +270,25 @@ var FaceTrace = {
 		this.processImage();
 
 	},
+	applyPotraceOptcurve: function(event){
+
+
+		//Toggle input button classes		
+		$.each(this.$potraceOptcurveBtns,function(index, button){
+			$(button).toggleClass('btn-primary btn-default');
+		});
+
+		this.potraceOptcurveValue.value = $(event.target).prop('value');
+
+		//Re-draw workspace with the new setting
+		this.processImage();
+
+
+	},
 
 	downloadSVG: function(event){
 
-			var svg = document.getElementById("svg");
+			var svg = this.workspace;
 
 			//get svg source.
 			var serializer = new XMLSerializer();
@@ -276,7 +309,11 @@ var FaceTrace = {
 			var url = "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(source);
 
 			//set url value to a element's href attribute.
-			document.getElementById("link").href = url;
+			this.downloadSVGTarget.href = url;
+
+			console.log(url);
+
+			window.location = url;
 
 
 
