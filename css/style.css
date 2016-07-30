@@ -1,3 +1,9 @@
+.container {
+  width: 99%;
+  margin: 0px 10px;
+
+}
+
 h4 {
   margin-top: 25px;
 }
@@ -17,6 +23,11 @@ h4 {
 hr {
   margin-top: 40px;
   margin-bottom: 40px;
+}
+
+#headerControls {
+  float: right;
+
 }
 
 #uploadContainer {
@@ -68,6 +79,10 @@ hr {
    display: none; 
 }
 
+#stepModeInputContainer {
+  display: inline;
+
+}
 
 #stepModeInputContainer p {
 

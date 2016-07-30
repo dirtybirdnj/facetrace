@@ -112,8 +112,8 @@ var FaceTrace = {
 	    
 	    FaceTrace.btnCaptureTrace.disabled = false;
 	    $(FaceTrace.btnCaptureTrace).toggleClass('btn-default btn-success');
-	    $(FaceTrace.btnUploadNew).toggleClass('btn-primary btn-default');
-
+	    //$(FaceTrace.btnUploadNew).toggleClass('btn-primary btn-default');
+	    $(FaceTrace.btnUploadNew).hide();
 		FaceTrace.preview.src = reader.result;
 		
 		//Initially greyscale the image for display
@@ -137,7 +137,7 @@ var FaceTrace = {
 
 		Caman(this.imageProcessed,this.preview.src, function(){
 
-			this.resize({width: 500});
+			//this.resize({width: 1000});
 			this.greyscale();
 			this.brightness(FaceTrace.brightness.value);
 			this.contrast(FaceTrace.contrast.value);			
@@ -187,9 +187,16 @@ var FaceTrace = {
 		PotraceOutput.setAttribute('fill','none');
 		PotraceOutput.setAttribute('stroke','#FF0000');
 
-
+		//Default SVG size... no scaling
 		this.workspace.setAttribute('width',this.imageProcessed.width + 100);
-		this.workspace.setAttribute('height',this.imageProcessed.height + 100);					
+		this.workspace.setAttribute('height',this.imageProcessed.height + 100);
+
+		//Set the background of the SVG?
+		//this.workspace.setAttribute('style','background:url(data:image/png;base64,')
+		//this.workspace.setAttribute('width','auto');
+		//this.workspace.setAttribute('height','auto');
+		//SCALING PLS... 
+		//this.workspace.setAttribute('viewbox','0 0 ' + this.imageProcessed.width + ' ' + this.imageProcessed.height)
 
 		this.drawWorkspace();
 

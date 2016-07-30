@@ -23,19 +23,31 @@
     <div class="container">
 
       <div class="page-header">
-        <p class="lead pull-right">
-          <input id="btnUploadNew" class="btn btn-lg btn-primary" type="button" value="Upload Image"/> 
-          <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">Help!</button>
-          <button id="btnReset" type="button" class="btn btn-danger" onclick="window.location = window.location">Reset</button>
-          <!--<button id="btnSave" type="button" class="btn btn-success">Save Output</button>-->
-          Javascript Bitmap to SVG Conversion.</p>
-        <h1>FaceTrace</h1>
+
+          <div id="headerControls">
+
+          <!--
+            <div id="stepModeInputContainer">
+              <p>Step Mode: </p>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default toggleStepMode" stepmode="true">On</button>
+                <button type="button" class="btn btn-primary toggleStepMode" stepmode="false">Off</button>
+                <input type="hidden" id="stepModeValue" value="false"/>
+              </div>
+            </div>
+            -->
+
+            <button id="captureTrace" type="button" class="btn btn-default" disabled>Capture Trace</button>        
+            <input id="btnUploadNew" class="btn btn-lg btn-primary" type="button" value="Upload Image"/> 
+            <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">Help!</button>
+            <button id="btnReset" type="button" class="btn btn-danger" onclick="window.location = window.location">Reset</button>
+            <!--<button id="btnSave" type="button" class="btn btn-success">Save Output</button>-->
+
+          </div>
+ 
+
+          <h1>FaceTrace</h1>
           <small><a href="https://github.com/dirtybirdnj/facetrace" target="_blank">https://github.com/dirtybirdnj/facetrace</a></small>
-
-        
-
-
-
 
       </div>
 
@@ -50,101 +62,130 @@
       </div>
 
       <div id="imageSettings">
-      
-        <div class="row">
-          <div class="col-md-4">
-            <h3>Image Manipulations</h3>
-            <small><strong>Modify the settings applied by Caman</strong></small>
-          </div>
-          <div class="col-md-8">
-            
-            <button id="captureTrace" type="button" class="btn btn-default pull-right" disabled>Capture Trace</button>
 
-            <div id="stepModeInputContainer">
-              <p>Step Mode: </p>
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default toggleStepMode" stepmode="true">On</button>
-                <button type="button" class="btn btn-primary toggleStepMode" stepmode="false">Off</button>
-                <input type="hidden" id="stepModeValue" value="false"/>
+        <div class="row">
+          <div class="col-md-2">
+            <h3>Image Manipulations</h3>
+                
+
+                <!-- Source Image -->
+                <p>Original</p>
+                <img id="imgSubmit" class="previewImage" src="" />
+                
+                <!-- Caman Output -->
+                <p>Greyscale &amp; Processed</p>
+                <div id="imgProcessedContainer">
+                  <canvas id="imgProcessed" class="previewImage"></canvas>
+                </div>
+                <img id="imgProcessOutput" src=""/>
+
+            <hr/>
+            <div class="row">
+              <div class="col-md-12">
+                <small>Range: -100 to 100</small>
+                <form class="form-inline settingSliderForm">
+                  <div class="form-group">
+                    <label>Brightness</label>
+                    <input type="text" class="form-control displaySetting" value="0" disabled>
+                    <div class="btn-group btn-group-xs settingButtons" role="group">
+                      <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
+                      <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
+                      <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>
+                    </div>
+                  </div>
+
+                </form>         
+                <input id="imgBrightnessValue" class="imageSettingSlider" data-slider-id='imgBrightness' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <small>Range: -100 to 100</small>
+                <form class="form-inline settingSliderForm">
+                  <div class="form-group">
+                    <label>Exposure</label>
+                    <input type="text" class="form-control displaySetting" value="0" disabled>
+                    <div class="btn-group btn-group-xs settingButtons" role="group">
+                      <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
+                      <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
+                      <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>                  
+                    </div>
+                  </div>
+
+                </form>         
+                <input id="imgExposureValue" class="imageSettingSlider" data-slider-id='imgExposure' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>       
+              </div>
+            </div> 
+
+            <div class="row">
+              <div class="col-md-12">
+                <small>Range: 0 to 100</small>
+                <form class="form-inline settingSliderForm">
+                  <div class="form-group">
+                    <label>Clip</label>
+                    <input type="text" class="form-control displaySetting" value="0" disabled>
+                    <div class="btn-group btn-group-xs settingButtons" role="group">
+                      <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
+                      <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
+                      <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>            
+                    </div>
+                  </div>
+
+                </form>         
+                <input id="imgClipValue" class="imageSettingSlider" data-slider-id='imgClip' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
+              </div>
+            </div> 
+
+            <!-- Contrast is useless (as implemented) -->
+            <div class="row" style="display: none;">
+              <div class="col-md-12">
+                <small>Range: -100 to 100</small>
+                <form class="form-inline settingSliderForm">
+                  <div class="form-group">
+                    <label>Contrast</label>
+                    <input type="text" class="form-control displaySetting" value="0" disabled>
+                    <div class="btn-group btn-group-xs settingButtons" role="group">
+                      <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
+                      <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
+                      <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>                 
+                    </div>
+                  </div>
+
+                </form>         
+                <input id="imgContrastValue" class="imageSettingSlider" data-slider-id='imgContrast' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
               </div>
             </div>
             
-          </div>
+
+
+          </div> <!-- end settings sidebar row -->
+
+          <!-- outpuuuuut -->
+          <div class="col-md-10">
+            <div class="row text-center">
+              <div class="col-md-2">
+              <!-- output was here -->
+              </div>
+
+              <div class="col-md-10">
+                <p>Path Trace</p>
+                <div id="svgContainer" class="previewImage"></div>
+
+                <div id="compositeContainer">
+                  <svg id="traceComposite"></svg>
+                </div>
+
+                <div id="workspaceContainer">
+                  <svg id="workspace"></svg>
+                </div>
+
+              </div>
+            </div> <!-- end output row -->
+
+          </div> <!-- end col-md-12 container -->
         </div>
-        
-        <!-- Caman Image Manipulation Settings-->
-        <div class="row">
-          <div class="col-md-3">
-            <small>Range: -100 to 100</small>
-            <form class="form-inline settingSliderForm">
-              <div class="form-group">
-                <label>Brightness</label>
-                <input type="text" class="form-control displaySetting" value="0" disabled>
-                <div class="btn-group btn-group-xs settingButtons" role="group">
-                  <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
-                  <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
-                  <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>
-                </div>
-              </div>
 
-            </form>         
-            <input id="imgBrightnessValue" class="imageSettingSlider" data-slider-id='imgBrightness' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>
-          </div>
-
-
-          <div class="col-md-3">
-            <small>Range: -100 to 100</small>
-            <form class="form-inline settingSliderForm">
-              <div class="form-group">
-                <label>Exposure</label>
-                <input type="text" class="form-control displaySetting" value="0" disabled>
-                <div class="btn-group btn-group-xs settingButtons" role="group">
-                  <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
-                  <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
-                  <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>                  
-                </div>
-              </div>
-
-            </form>         
-            <input id="imgExposureValue" class="imageSettingSlider" data-slider-id='imgExposure' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>       
-          </div>
-
-
-          <div class="col-md-3">
-            <small>Range: 0 to 100</small>
-            <form class="form-inline settingSliderForm">
-              <div class="form-group">
-                <label>Clip</label>
-                <input type="text" class="form-control displaySetting" value="0" disabled>
-                <div class="btn-group btn-group-xs settingButtons" role="group">
-                  <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
-                  <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
-                  <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>            
-                </div>
-              </div>
-
-            </form>         
-            <input id="imgClipValue" class="imageSettingSlider" data-slider-id='imgClip' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
-          </div> 
-
-          <div class="col-md-3">
-            <small>Range: -100 to 100</small>
-            <form class="form-inline settingSliderForm">
-              <div class="form-group">
-                <label>Contrast</label>
-                <input type="text" class="form-control displaySetting" value="0" disabled>
-                <div class="btn-group btn-group-xs settingButtons" role="group">
-                  <button type="button" class="btn btn-default btnModifySetting" value="-1">-</button>
-                  <button type="button" class="btn btn-default btnModifySetting" value="1">+</button>
-                  <button type="button" class="btn btn-danger btnModifySetting btnResetValue" value="0">Reset</button>                 
-                </div>
-              </div>
-
-            </form>         
-            <input id="imgContrastValue" class="imageSettingSlider" data-slider-id='imgContrast' type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"/>         
-          </div>                             
-                   
-        </div>
       </div>
 
       <div id="potraceSettings">
@@ -234,37 +275,6 @@
                    
         </div>
       </div>               
-
-      <h3>Image Operations</h3>
-      <div class="row text-center">
-        <div class="col-md-3">
-          <p>Original</p>
-          <img id="imgSubmit" class="previewImage" src="" />
-        </div>
-        <div class="col-md-3">
-          <p>Greyscale &amp; Processed</p>
-          
-          <div id="imgProcessedContainer">
-            <canvas id="imgProcessed" class="previewImage"></canvas>
-          </div>
-
-          <img id="imgProcessOutput" src=""/>
-          
-        </div>
-        <div class="col-md-6">
-          <p>Path Trace</p>
-          <div id="svgContainer" class="previewImage"></div>
-
-          <div id="compositeContainer">
-            <svg id="traceComposite"></svg>
-          </div>
-
-          <div id="workspaceContainer">
-            <svg id="workspace"></svg>
-          </div>
-
-        </div>
-      </div> <!-- end output row -->
 
       <div class="row text-center">
         <div class="col-md-12">
