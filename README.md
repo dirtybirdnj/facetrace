@@ -1,7 +1,7 @@
 # facetrace
-
-![Facetrace Output](http://matgilbert.com/facetrace/bond-party/svgs/11.31.svg)
 Images of faces go in... SVG renderings come out!
+
+![Facetrace Output](http://matgilbert.com/facetrace/bond-party/images/example.png)
 
 Interactively generate SVG traces of photographs. 
 
